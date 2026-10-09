@@ -22,11 +22,11 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.Property(p => p.Name)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(Product.NameMaxLength);
 
         builder.Property(p => p.Category)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(Product.CategoryMaxLength);
 
         builder.Property(p => p.Price)
             .IsRequired()

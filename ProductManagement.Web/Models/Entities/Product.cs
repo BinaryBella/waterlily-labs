@@ -6,6 +6,12 @@ namespace ProductManagement.Web.Models.Entities;
 /// </summary>
 public class Product
 {
+    /// <summary>Column length of Name. Shared by the database mapping and the service validation.</summary>
+    public const int NameMaxLength = 100;
+
+    /// <summary>Column length of Category. Shared by the database mapping and the service validation.</summary>
+    public const int CategoryMaxLength = 50;
+
     public int ProductId { get; set; }
 
     public string Name { get; set; } = string.Empty;

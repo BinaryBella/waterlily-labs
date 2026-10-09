@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.Web.Data;
 using ProductManagement.Web.Repositories;
+using ProductManagement.Web.Services;
 using ProductManagement.Web.Services.Caching;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 // Singleton because it wraps the singleton IMemoryCache and holds no per-request state.
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 var app = builder.Build();
 
