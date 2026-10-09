@@ -28,7 +28,7 @@ public class ProductFormViewModel
     // Nullable so an empty field reports "required" instead of a type-conversion error.
     // The upper bound is the largest value decimal(18,2) can hold.
     [Required(ErrorMessage = "Price is required.")]
-    [Range(typeof(decimal), "0", "9999999999999999.99", ErrorMessage = "Price can't be negative.")]
+    [Range(typeof(decimal), "0", "9999999999999999.99", ErrorMessage = "Price must be between 0 and 9,999,999,999,999,999.99.")]
     public decimal? Price { get; set; }
 
     [Required(ErrorMessage = "Stock is required.")]

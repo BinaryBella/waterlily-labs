@@ -128,6 +128,8 @@ public class ProductService : IProductService
         _cache.Remove(CacheKeys.Product(productId));
     }
 
+    // The reports cover every product, so the ID isn't needed here. The parameter is there
+    // because every handler must match the ProductChangedHandler signature.
     private void RemoveReportEntries(int productId)
     {
         _cache.Remove(CacheKeys.AveragePriceByCategory);
