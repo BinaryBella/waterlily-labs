@@ -1,0 +1,15 @@
+/* Small additions on top of Bootstrap 5. Page-specific styles are added with their pages. */
+
+html {
+  font-size: 15px;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* Numbers line up in table columns. */
+.text-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
