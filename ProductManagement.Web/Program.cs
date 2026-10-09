@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.Web.Data;
 using ProductManagement.Web.Repositories;
+using ProductManagement.Web.Services.Caching;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 
 // Scoped to match the DbContext: one repository per request.
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+// Singleton because it wraps the singleton IMemoryCache and holds no per-request state.
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
 var app = builder.Build();
 
