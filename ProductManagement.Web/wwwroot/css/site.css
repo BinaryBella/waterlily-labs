@@ -13,3 +13,9 @@ body {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+/* Report page: the top stock-value card stands out from the averages table. */
+.report-highlight {
+  border-width: 2px;
+  background-color: #f3fbf6;
+}

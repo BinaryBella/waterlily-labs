@@ -1,0 +1,72 @@
+@model ReportViewModel
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h1 class="h3 mb-3">Report</h1>
+
+@if (!Model.HasData)
+{
+    <div class="card shadow-sm">
+        <div class="card-body text-center py-5">
+            <h2 class="h5">No products yet</h2>
+            <p class="text-muted mb-3">The report is calculated from your products. Add some to see results here.</p>
+            <a class="btn btn-primary" href="/Products">Go to products</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        <div class="col-lg-5 order-lg-2">
+            <div class="card shadow-sm border-success report-highlight">
+                <div class="card-body">
+                    <h2 class="h6 text-uppercase text-success mb-3">
+                        @(Model.IsTie ? "Highest stock value (tie)" : "Highest stock value")
+                    </h2>
+
+                    @foreach (var top in Model.HighestStockValue)
+                    {
+                        <div class="mb-2">
+                            <div class="fs-4 fw-semibold">@top.Category</div>
+                            <div class="fs-5 text-numeric text-start">@top.TotalStockValue.ToString("N2")</div>
+                        </div>
+                    }
+
+                    <p class="text-muted small mb-0">
+                        Stock value is Price × Stock summed over the category's products: the money tied up in stock, not the number of units.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 order-lg-1">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h2 class="h6 mb-0">Average price by category</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col" class="text-numeric">Products</th>
+                                <th scope="col" class="text-numeric">Average price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var row in Model.AveragePrices)
+                            {
+                                <tr>
+                                    <td>@row.Category</td>
+                                    <td class="text-numeric">@row.ProductCount</td>
+                                    <td class="text-numeric">@row.AveragePrice.ToString("N2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
