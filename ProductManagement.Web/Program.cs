@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using ProductManagement.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // The connection string in appsettings.json has no password. In Development the full
@@ -7,6 +10,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
