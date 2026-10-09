@@ -1,0 +1,57 @@
+@model ProductFormViewModel
+@* The Add/Edit form, loaded into the modal. Returned again with status 422 when validation fails.
+   A form tag helper with method="post" adds the anti-forgery token automatically. *@
+
+<form asp-action="@(Model.IsEdit ? "Edit" : "Create")"
+      asp-controller="Products"
+      asp-route-id="@Model.ProductId"
+      method="post"
+      data-mode="@(Model.IsEdit ? "edit" : "create")">
+    <div class="modal-header">
+        <h2 class="modal-title h5" id="product-modal-title">@(Model.IsEdit ? "Edit product" : "Add product")</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        @* Errors that aren't tied to one field, and request failures shown by the script. *@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="alert alert-danger d-none js-modal-error" role="alert"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" autocomplete="off" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label"></label>
+            @* The datalist suggests existing categories, which helps avoid near-duplicates like "Furnitur". *@
+            <input asp-for="Category" class="form-control" list="category-options" autocomplete="off" />
+            <datalist id="category-options">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category"></option>
+                }
+            </datalist>
+            <span asp-validation-for="Category" class="text-danger small"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control" inputmode="decimal" />
+                <span asp-validation-for="Price" class="text-danger small"></span>
+            </div>
+            <div class="col-sm-6 mb-3">
+                <label asp-for="Stock" class="form-label"></label>
+                <input asp-for="Stock" class="form-control" min="0" step="1" />
+                <span asp-validation-for="Stock" class="text-danger small"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

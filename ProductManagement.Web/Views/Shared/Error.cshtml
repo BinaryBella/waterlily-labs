@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="card border-danger">
+    <div class="card-body">
+        <h1 class="h4 text-danger">Something went wrong</h1>
+        <p class="mb-2">The request couldn't be completed. Please try again, or go back to the <a href="/Products">product list</a>.</p>
+        <p class="text-muted small mb-0">Request ID: <code>@ViewData["RequestId"]</code></p>
+    </div>
+</div>

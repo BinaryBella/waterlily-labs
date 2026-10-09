@@ -1,0 +1,27 @@
+@model IReadOnlyList<ProductDto>
+@* The table body. Rendered inside Index, and returned on its own after every successful save or delete. *@
+
+@if (Model.Count == 0)
+{
+    <tr>
+        <td colspan="6" class="text-center text-muted py-4">No products yet. Use <strong>Add product</strong> to create one.</td>
+    </tr>
+}
+
+@foreach (var product in Model)
+{
+    <tr>
+        <td class="text-numeric text-muted">@product.ProductId</td>
+        <td>@product.Name</td>
+        <td><span class="badge text-bg-light border">@product.Category</span></td>
+        <td class="text-numeric">@product.Price.ToString("N2")</td>
+        <td class="text-numeric">@product.Stock.ToString("N0")</td>
+        <td class="text-end text-nowrap">
+            <button type="button" class="btn btn-sm btn-outline-primary js-edit"
+                    data-url="@Url.Action("Edit", "Products", new { id = product.ProductId })">Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger js-delete"
+                    data-url="@Url.Action("Delete", "Products", new { id = product.ProductId })"
+                    data-name="@product.Name">Delete</button>
+        </td>
+    </tr>
+}

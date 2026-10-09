@@ -30,6 +30,9 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
+    // Logs the unhandled exception, then re-runs the request as /Error to show the shared error page.
+    // Development shows the detailed developer exception page instead.
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
