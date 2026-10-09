@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.Web.Data;
+using ProductManagement.Web.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+// Scoped to match the DbContext: one repository per request.
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
