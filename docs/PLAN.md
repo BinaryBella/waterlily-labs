@@ -1,6 +1,5 @@
 # Project Plan — Product Management (ASP.NET Core MVC)
 
-
 ## 1. Understanding of the Requirement
 
 The task is to build a small product management web application in ASP.NET Core MVC, backed by SQL Server through EF Core code-first. It has two pages: a Product List page for CRUD and a Report page for two category-level calculations.
