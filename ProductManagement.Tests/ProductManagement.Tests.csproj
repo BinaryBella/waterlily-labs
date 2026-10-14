@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.21.0" />
-    <PackageReference Include="MSTest" Version="4.0.2" />
+    <PackageReference Include="MSTest" Version="4.5.1" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>

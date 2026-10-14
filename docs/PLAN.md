@@ -1,6 +1,5 @@
 # Project Plan — Product Management (ASP.NET Core MVC)
 
-Oct 8, 2026 · @Hirusha Fernando
 
 ## 1. Understanding of the Requirement
 
